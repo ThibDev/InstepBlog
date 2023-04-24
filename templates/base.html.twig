@@ -18,6 +18,12 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            {% include "partials/header.html.twig" %}
+        </header>
+        <main>{% block body %}{% endblock %}</main>
+        <footer>
+            {% include "partials/footer.html.twig" %}
+        </footer>
     </body>
 </html>
