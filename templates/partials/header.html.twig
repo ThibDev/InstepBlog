@@ -1,19 +1,13 @@
-{% include "partials/navigation.html.twig" %}
 <header>
-    <!-- Background image -->
-    <div class="p-5 text-center bg-image" style="
-        background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
-        height: 400px;
-      ">
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="text-white">
-                    <h1 class="mb-3">Heading</h1>
-                    <h4 class="mb-3">Subheading</h4>
-                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
-                </div>
+    {% include '/partials/navigation.html.twig' %}
+    <section id="hero-section" class="center">
+        <div>
+            <div class="center my-5 mx-5">
+                <p class="px-5 text-center h4 mx-5 text-light text-lg">Bienvenue sur le Blog de l'Instep on y partage tout ce que je fais sur la tech,<br/> ce que je découvre ou ce que j'apprécie dans cet univers passionnant</p>
+            </div>
+            <div class="center my-5">
+                <a href="#" class="btn btn-lg btn-outline-light">Get in touch</a>
             </div>
         </div>
-    </div>
-    <!-- Background image -->
+    </section>
 </header>
