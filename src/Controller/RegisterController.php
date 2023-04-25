@@ -28,13 +28,17 @@ class RegisterController extends AbstractController
                 $user->setPassword($password);
                 $entityManager->persist($user);
                 $entityManager->flush();
+                $this->addFlash('succes_register', "Vous êtes bien inscrit, vous pouvez vous connecter");
+                return $this->redirectToRoute('app_login');
             }else{
                 $notification = "l'email saisi est déjà utilisé sur le site";
             }
         }
 
         return $this->render('register/index.html.twig', [
+            'registerForm' => $form->createView(),
             'current_menu' => 'homepage',
+            'notification' => $notification
         ]);
     }
 }
