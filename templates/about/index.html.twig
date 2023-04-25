@@ -2,6 +2,49 @@
 
 {% block title %}About{% endblock %}
 
+{% block header %}{% endblock %}
+
 {% block body %}
-<h2>About</h2>
+    <div class="container-md mt-5 pt-5">
+        <div class="jumbotron m-2 p-2 p-md-5 m-md-5">
+            <div class="image_5 d-flex justify-content-center align-items-center"><img class="w-25 rounded-circle mx-auto img-fluid" src="{{ asset('/assets/img/img-5.jpeg') }}"></div>
+            <h2 class="subheading text-center mt-5">Hello I'm</h2>
+            <h1 class="mb-4 text-center">Julien Grade</h1>
+            <p class="mb-4 text-center">I am A new french Blogger inspired by what i'm learning, discovering and exploring. I write about tech and web particulary. I'm a web developper working with Symfony, React.
+                I like to share my knowledge and help people to make their dreams come true that's why i became a teacher too.
+            </p>
+            <h3>My skills</h3>
+            <ul class="list-unstyled">
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto consectetur cum repellat sequi tempore ullam? Amet assumenda aut blanditiis error harum, iure necessitatibus pariatur quibusdam tempora temporibus unde velit?
+                </li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, enim, quibusdam. Consectetur ea eum ipsum molestias non quia reprehenderit! Consequatur deleniti eius qui. Cumque dolores eos optio voluptate? Odio, totam.
+                </li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad delectus dolor dolorem earum facilis maxime numquam perspiciatis quibusdam, quis quisquam, recusandae repellendus sint totam vel voluptas, voluptatibus? Veniam, voluptatibus?
+                </li>
+            </ul>
+            <h3>My work</h3>
+            <ul class="list-unstyled">
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto consectetur cum repellat sequi tempore ullam? Amet assumenda aut blanditiis error harum, iure necessitatibus pariatur quibusdam tempora temporibus unde velit?
+                </li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, enim, quibusdam. Consectetur ea eum ipsum molestias non quia reprehenderit! Consequatur deleniti eius qui. Cumque dolores eos optio voluptate? Odio, totam.
+                </li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad delectus dolor dolorem earum facilis maxime numquam perspiciatis quibusdam, quis quisquam, recusandae repellendus sint totam vel voluptas, voluptatibus? Veniam, voluptatibus?
+                </li>
+            </ul>
+            <div class="social_icon">
+                <h3 class="text-center text-info">Get in touch</h3>
+                <ul class="list-unstyled d-flex justify-content-center">
+                    <li class="mx-5"><a href="#"><img src="{{ asset('/assets/img/fb-icon.png') }}"></a></li>
+                    <li class="mx-5"><a href="#"><img src="{{ asset('/assets/img/twitter-icon.png') }}"></a></li>
+                    <li class="mx-5"><a href="#"><img src="{{ asset('/assets/img/instagram-icon.png') }}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
