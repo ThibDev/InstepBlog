@@ -7,13 +7,13 @@
             <a class="navbar-brand ml-md-5 text-white" href="{{ path('admin_dashboard') }}"><h1>Administration My Blog</h1></a>
             <ul class="navbar-nav mr-auto ml-5 mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {% if current_menu == 'dashboard' %}active{% endif %}" href="{{ path('admin_dashboard') }}">Dashboard</a>
+                    <a class="nav-link {% if current_menu == 'dashboard' %}active text-decoration-underline{% endif %}" href="{{ path('admin_dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if current_menu == 'themes' %}active{% endif %}" href="#">Thèmes</a>
+                    <a class="nav-link {% if current_menu == 'themes' %}active text-decoration-underline{% endif %}" href="{{path('admin_themes')}}">Thèmes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if current_menu == 'articles' %}active{% endif %}" href="#">Articles</a>
+                    <a class="nav-link {% if current_menu == 'articles' %}active text-decoration-underline{% endif %}" href="{{path('admin_articles')}}">Articles</a>
                 </li>
             </ul>
         </div>

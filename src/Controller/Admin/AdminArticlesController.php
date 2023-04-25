@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminArticlesController extends AbstractController
 {
-    #[Route('/admin/articles', name: 'app_admin_articles')]
+    #[Route('/admin/articles', name: 'admin_articles')]
     public function index(): Response
     {
         return $this->render('Admin/articles/index.html.twig', [
-            'controller_name' => 'AdminArticlesController',
+            'current_menu' => 'articles',
         ]);
     }
 }

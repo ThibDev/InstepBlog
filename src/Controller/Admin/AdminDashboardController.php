@@ -12,7 +12,7 @@ class AdminDashboardController extends AbstractController
     public function index(): Response
     {
         return $this->render('Admin/dashboard/index.html.twig', [
-            'current_menu' => 'homepage',
+            'current_menu' => 'dashboard',
         ]);
     }
 }
