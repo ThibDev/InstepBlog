@@ -1,9 +1,53 @@
-{% extends 'Admin/admin_base.html.twig' %}
-
-{% block title %}Mon compte{% endblock %}
-
-{% block body %}
-<div class="container-md mt-5">
-    <h2>Mon compte</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Site de type blog pour découvrir et apprendre Symfony 6 avec Php 8">
+    <title>{% block title %}Connexion - Administration My Blog{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    <link href="{{ asset('./assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('./assets/css/base.css') }}" rel="stylesheet">
+    <!-- Font awesome cdn -->
+    <script src="https://kit.fontawesome.com/4e44dc3df4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="row d-flex justify-content-center align-items-center mt-md-5">
+    <div class="col-md-6">
+        <div class="card bg-light">
+            <div class="card-header">
+                <h4 class="card-title text-center">
+                    <i class="fas fa-lock"></i>
+                    Connexion à l'administration Instep Blog
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="_username">Email</label>
+                        <input id="_username" type="text" class="form-control" placeholder="Adresse email" name="_username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="_password">Mot de passe</label>
+                        <input id="_password" type="password" class="form-control" placeholder="Mot de passe" name="_password" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn my-2 btn-primary">
+                            <i class="fas fa-lock-open"></i>
+                            Connexion
+                        </button>
+                        <a href="{{ path('homepage') }}" class="btn my-2 btn-link">
+                            <i class="fas fa-arrow-circle-left"></i>
+                            Retour au site
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-{% endblock %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="{{ asset('/assets/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
