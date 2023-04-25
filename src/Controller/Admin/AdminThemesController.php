@@ -15,4 +15,12 @@ class AdminThemesController extends AbstractController
             'current_menu' => 'themes',
         ]);
     }
+
+    #[Route('/admin/themes/ajout', name: 'admin_themes_create')]
+    public function create()
+    {
+        return $this->render('Admin/themes/new.html.twig', [
+            'current_menu' => "themes"
+        ]);
+    }
 }
