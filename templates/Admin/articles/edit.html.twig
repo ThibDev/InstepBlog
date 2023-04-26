@@ -1,0 +1,12 @@
+{% extends 'Admin/admin_base.html.twig' %}
+
+{% block title %}Modification d'article{% endblock %}
+
+{% block body %}
+    <div class="container-md mt-5">
+        <h2>Modification d'article {{ article.title|capitalize }}</h2>
+        <section>
+            {{ form(articleForm) }}
+        </section>
+    </div>
+{% endblock %}
