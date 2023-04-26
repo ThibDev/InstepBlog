@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\ArticlesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity('title', 'Un autre thème porte déjà ce titre')]
 #[ORM\Entity(repositoryClass: ArticlesRepository::class)]
 class Articles
 {
@@ -18,6 +21,10 @@ class Articles
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[Assert\Length(
+        min: 150,
+        minMessage: 'Le contenu de l\'article ne peut pas faire moins de 150 caractères',
+    )]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
