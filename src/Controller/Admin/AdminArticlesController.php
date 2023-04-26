@@ -71,7 +71,7 @@ class AdminArticlesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
-            $this->addFlash('success_article_edit', 'Le thème a bien été modifié');
+            $this->addFlash('success_articles_edit', 'L\'article a bien été modifié');
             return $this->redirectToRoute('admin_articles');
         }
 
@@ -87,7 +87,7 @@ class AdminArticlesController extends AbstractController
     {
         $this->entityManager->remove($articles);
         $this->entityManager->flush();
-        $this->addFlash('success_theme_delete', 'Le thèeme a bien été modifié');
+        $this->addFlash('success_articles_delete', 'L\'article a bien été modifié');
         return $this->redirectToRoute('admin_articles');
     }
 }

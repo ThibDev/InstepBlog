@@ -42,7 +42,7 @@ class AdminThemesController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $this->entityManager->persist($theme);
             $this->entityManager->flush();
-            $this->addFlash('success_theme_create', 'Votre thème a bien été créer');
+            $this->addFlash('success_themes_create', 'Votre thème a bien été créer');
             return $this->redirectToRoute('admin_themes');
         }
 
@@ -62,7 +62,7 @@ class AdminThemesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
-            $this->addFlash('success_theme_edit', 'Le thème a bien été modifié');
+            $this->addFlash('success_themes_edit', 'Le thème a bien été modifié');
             return $this->redirectToRoute('admin_themes');
         }
 
@@ -78,7 +78,7 @@ class AdminThemesController extends AbstractController
     {
         $this->entityManager->remove($themes);
         $this->entityManager->flush();
-        $this->addFlash('success_theme_delete', 'Le thèeme a bien été modifié');
+        $this->addFlash('success_themes_delete', 'Le thème a bien été modifié');
         return $this->redirectToRoute('admin_themes');
     }
 }
