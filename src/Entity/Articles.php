@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticlesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity(repositoryClass: ArticlesRepository::class)]
 class Articles
@@ -28,6 +29,17 @@ class Articles
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    public function computeSlug(SluggerInterface $slugger){
+        if(!$this->slug || '-' === $this->slug){
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getTitle();
+    }
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
