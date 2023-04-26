@@ -3,7 +3,69 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
-<div class="container-md mt-5">
-    <h2>Dashboard</h2>
-</div>
+    <div class="container-md mt-5">
+        <div class="jumbotron py-5 jumbotron-fluid bg-primary text-light">
+            <h1 class="text-center">Dashboard - Instep Blog</h1>
+            <div class=" my-5 d-flex justify-content-around mx-5">
+                <div>
+                    <a href="{{ path('admin_themes') }}" class="btn px-4 py-3 btn-light">Voir les thèmes</a>
+                </div>
+                <div>
+                    <a href="{{ path('admin_themes_create') }}" class="btn px-4 py-3 btn-light">Créer un thème</a>
+                </div>
+                <div>
+                    <a href="{{ path('admin_articles') }}" class="btn px-4 py-3 btn-light">Voir les articles</a>
+                </div>
+                <div>
+                    <a href="{{ path('admin_articles_create') }}" class="btn px-4 py-3 btn-light">Créer un article</a>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="card bg-success text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-user fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4><strong>2</strong> Utilisateur(s)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-info text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-folder fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4><strong>1</strong> Thème(s)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card bg-warning text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-hotel fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4><strong>1</strong> Article(s)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 {% endblock %}
