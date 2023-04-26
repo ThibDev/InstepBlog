@@ -12,6 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminThemesController extends AbstractController
 {
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
     #[Route('/admin/themes', name: 'admin_themes')]
     public function index(): Response
     {
@@ -21,16 +29,16 @@ class AdminThemesController extends AbstractController
     }
 
     #[Route('/admin/themes/ajout', name: 'admin_themes_create')]
-    public function create(Request $request, EntityManagerInterface $entityManager)
+    public function create(Request $request)
     {
         $theme = new Themes();
         $form = $this->createForm(ThemesType::class, $theme);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $entityManager->persist($theme);
-            $entityManager->flush();
-            $this->addFlash('succes_theme_create', 'Votre thème a bien été créer');
+            $this->entityManager->persist($theme);
+            $this->entityManager->flush();
+            $this->addFlash('success_theme_create', 'Votre thème a bien été créer');
             return $this->redirectToRoute('admin_themes');
         }
 
@@ -38,5 +46,35 @@ class AdminThemesController extends AbstractController
             'current_menu' => "themes",
             'themeForm' => $form->createView()
         ]);
+    }
+
+    #[Route('/admin/themes/modifier/{slug}', name: 'admin_themes_edit')]
+    public function edit(Themes $themes, Request $request, $slug)
+    {
+        $theme = $this->entityManager->getRepository(Themes::class)->findOneBySlug($slug);
+
+        $form = $this->createForm(ThemesType::class, $themes);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            $this->addFlash('success_theme_edit', 'Le thème a bien été modifié');
+            return $this->redirectToRoute('admin_themes');
+        }
+
+        return $this->render('Admin/themes/edit.html.twig', [
+            'theme' => $theme,
+            'current_menu' => "themes",
+            'themeForm' => $form->createView()
+        ]);
+    }
+
+    #[Route('/admin/themes/supprimer/{slug}', name: 'admin_themes_delete')]
+    public function delete(Themes $themes)
+    {
+        $this->entityManager->remove($themes);
+        $this->entityManager->flush();
+        $this->addFlash('success_theme_delete', 'Le thèeme a bien été modifié');
+        return $this->redirectToRoute('admin_themes');
     }
 }
