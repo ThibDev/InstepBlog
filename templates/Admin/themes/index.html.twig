@@ -3,8 +3,47 @@
 {% block title %}Gestion des thèmes{% endblock %}
 
 {% block body %}
-<div class="container-md mt-5">
-    <h2>Les Thèmes</h2>
-    <a class="btn btn-primary" href="{{path('admin_themes_create')}}">Ajouter un thème</a>
-</div>
+    <div class="container-md mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <h2>Les thèmes</h2>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-primary mx-5" href="{{ path('admin_themes_create') }}">Ajouter un thème</a>
+            </div>
+        </div>
+        <section class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Titre</th>
+                        <th scope="col" class="text-center">Description</th>
+                        <th scope="col" class="text-center">Illustration</th>
+                        <th scope="col" class="text-center">Slug</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for theme in themes %}
+                        <tr>
+                            <td class="text-center">{{ theme.title|capitalize }}</td>
+                            <td class="text-center">{{ theme.description|capitalize }}</td>
+                            <td class="text-center">{{ theme.illustration|capitalize }}</td>
+                            <td class="text-center">{{ theme.slug|capitalize }}</td>
+                            <td>
+                                <div class="center">
+                                    <div class="mx-2">
+                                        <a class="btn btn-warning" href="{{ path('admin_themes_edit', {'slug' : theme.slug}) }}"><i class="fas fa-edit mr-1"></i>Éditer</a>
+                                    </div>
+                                    <div class="mx-2">
+                                        <a class="btn btn-danger" onclick="confirm('Supprimer le thème ?')" href="{{ path('admin_themes_delete', {'slug' : theme.slug}) }}"><i class="fas fa-trash mr-1"></i>Supprimer</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
 {% endblock %}

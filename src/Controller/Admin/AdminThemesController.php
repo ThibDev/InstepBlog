@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Themes;
 use App\Form\ThemesType;
+use App\Repository\ThemesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +24,11 @@ class AdminThemesController extends AbstractController
     #[Route('/admin/themes', name: 'admin_themes')]
     public function index(): Response
     {
+        $themes = $this->entityManager->getRepository(Themes::class)->findAll();
+
         return $this->render('Admin/themes/index.html.twig', [
             'current_menu' => 'themes',
+            'themes' => $themes
         ]);
     }
 
