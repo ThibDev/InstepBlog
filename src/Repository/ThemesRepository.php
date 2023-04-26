@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Themes;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +39,18 @@ class ThemesRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getTotalThemes()
+    {
+        $query = $this->createQueryBuilder('t')
+            ->select('COUNT(t.id)');
+            try {
+                return $query->getQuery()->getSingleScalarResult();
+            }catch (NoResultException|NonUniqueResultException){
+
+            }
+       
     }
 
 //    /**

@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Articles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +39,18 @@ class ArticlesRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getTotalArticles()
+    {
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a.id)');
+            try {
+                return $query->getQuery()->getSingleScalarResult();
+            }catch (NoResultException|NonUniqueResultException){
+
+            }
+       
     }
 
 //    /**
