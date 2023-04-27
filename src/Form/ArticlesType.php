@@ -7,11 +7,13 @@ use App\Entity\Themes;
 use App\Repository\ThemesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ArticlesType extends AbstractType
 {
@@ -38,14 +40,23 @@ class ArticlesType extends AbstractType
                     'class' => 'text-info'
                 ]
             ])
-            ->add('illustration', TextType::class, [
+            ->add('illustration', FileType::class, [
                 'label' => 'Image de l\'article',
+                'required' => true,
                 'attr' => [
                     'placeholder' => 'Merci de saisir l\'url de l\'image de l\'article',
                     'class' => 'form-control my-2'
                 ],
                 'label_attr' => [
                     'class' => 'text-info'
+                ],
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => ["image/png", "image/jpeg", "image/pjpeg"],
+                        'mimeTypesMessage' => "Formats d'image supportées : .jpg, .png, .jpeg, .pjpeg",
+                        'maxSizeMessage' => 'La taille autorisée est de 2048k'
+                    ])
                 ]
             ])
             ->add('theme', EntityType::class, [

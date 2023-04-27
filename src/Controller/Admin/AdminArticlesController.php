@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use App\Form\ArticlesType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class AdminArticlesController extends AbstractController
     }
 
     #[Route('/admin/articles/ajout', name: 'admin_articles_create')]
-    public function create(Request $request, EntityManagerInterface $entityManager): RedirectResponse|Response
+    public function create(Request $request, string $articleIllustrationDir): RedirectResponse|Response
     {
         $article = new Articles();
         $form= $this->createForm(ArticlesType::class, $article);
@@ -43,6 +44,16 @@ class AdminArticlesController extends AbstractController
             $dateTimeZone = new \DateTimeZone('Europe/Paris');
             $date = new \DateTimeImmutable('now', $dateTimeZone);
             $article->setCreatedAt($date);
+
+            if ($illustration = $form['illustration']->getData()) {
+                $illustrationFilename = bin2hex(random_bytes(6).'.'.$illustration->guessExtention());
+                try {
+                    $illustration->move($articleIllustrationDir, $illustrationFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error_illustration_article_upload', 'Erreur lors de l\'upload de l\'image');
+                }
+                $article->setIllustration($illustrationFilename);
+            }
 
             $this->entityManager->persist($article);
             $this->entityManager->flush();
