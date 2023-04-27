@@ -4,12 +4,14 @@
 
 {% block body %}
     <h1>Bienvenue sur Instep-Blog</h1>
+    {% for lastArticles in articles %}
     {# <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ themes.illustration }}" alt="{{ themes.title }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ themes.title }}</h5>
-          <p class="card-text">{{ theme.description }}</p>
-          <a href="{{path('')}}" class="btn btn-primary">Voir tous les articles</a>
-        </div>
-    </div> #}
+      <img class="card-img-top" src="{{ lastArticles.illustration}}" alt="{{ lastArticles.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ lastArticles.title }}</h5>
+        <p class="card-text">{{ lastArticles.content }}</p>
+        <a href="" class="btn btn-primary">Voir tous les articles</a>
+      </div>
+  </div> #}
+    {% endfor %}
 {% endblock %}

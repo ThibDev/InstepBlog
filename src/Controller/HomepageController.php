@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\ArticlesRepository;
+use App\Entity\Articles;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,14 @@ class HomepageController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'homepage')]
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        $article = $articlesRepository->findBy(array(), array('id' => 'desc'), 1);
+        $lastArticle = $entityManager->getRepository(Articles::class)->findLastArticles(1);
+        $article = $entityManager->getRepository(Articles::class)->findAll();
+
         return $this->render('homepage/index.html.twig', [
             'current_menu' => 'homepage',
+            'lastArticles' => $lastArticle,
             'articles' => $article
         ]);
     }
