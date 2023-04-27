@@ -15,7 +15,7 @@ class ChangePasswordType extends AbstractType
     {
         $builder
             ->add('old_password', PasswordType::class, [
-                'label' => 'Mon mot ddde passe actuel',
+                'label' => 'Mon mot de passe actuel',
                 'mapped' => false,
                 'attr' => [
                     'placeholder' => 'Veuillez saisir votre ancien mot de passe',
