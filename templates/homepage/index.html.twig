@@ -1,17 +1,21 @@
+nes (16 sloc)  791 Bytes
+ 
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur Instep-Blog</h1>
-    {% for lastArticles in articles %}
-    {# <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{ lastArticles.illustration}}" alt="{{ lastArticles.title }}">
-      <div class="card-body">
-        <h5 class="card-title">{{ lastArticles.title }}</h5>
-        <p class="card-text">{{ lastArticles.content }}</p>
-        <a href="" class="btn btn-primary">Voir tous les articles</a>
-      </div>
-  </div> #}
+<div class="container-md mt-5">
+    <h2>Le dernier article</h2>
+    {% for last_article in last_articles %}
+    <article class="my-5">
+        <img class="w-100 img-fluid rounded-5" alt="{{ last_article.title }}" src="{{ asset('uploads/article/illustration/'~last_article.illustration) }}" />
+        <p class="mt-5">Posté le : {{ last_article.createdAt|date('d-m-Y') }}</p>
+        <h2 class="text-center">{{ last_article.title|capitalize }}</h2>
+        <p>{{ last_article.content|capitalize|u.truncate(150, '...') }}</p>
+        <a class="btn btn-outline-primary" href="{{ path('blog_show', {'slug': last_article.slug}) }}">Voir en détail</a>
+    </article>
     {% endfor %}
+</div>
 {% endblock %}

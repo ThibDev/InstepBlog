@@ -12,18 +12,17 @@ class HomepageController extends AbstractController
 {
     /**
      * Permet d'afficher la page d'accueil du site
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
     #[Route('/', name: 'homepage')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-        $lastArticle = $entityManager->getRepository(Articles::class)->findLastArticles(1);
-        $article = $entityManager->getRepository(Articles::class)->findAll();
+        $lastArticles = $entityManager->getRepository(Articles::class)->findLastArticles(1);
 
         return $this->render('homepage/index.html.twig', [
             'current_menu' => 'homepage',
-            'lastArticles' => $lastArticle,
-            'articles' => $article
+            'last_articles' => $lastArticles
         ]);
     }
 }

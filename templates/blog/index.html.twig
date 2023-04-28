@@ -3,8 +3,22 @@
 {% block title %}Blog{% endblock %}
 
 {% block body %}
-<h1>Blog</h1>
-    {% for articles in article %}
-        
+<div class="container-md mt-5">
+    <h2>Les articles du blog</h2>
+    {% for article in articles %}
+    <article class="card my-5 p-5 w-75 mx-auto">
+        <div class="card-img">
+            <img class="w-100 img-fluid rounded-5" alt="{{ article.title }}" src="{{ asset('uploads/article/illustration/'~article.illustration) }}" />
+        </div>
+        <div class="card-body">
+            <p>Posté le : {{ article.createdAt|date('d-m-Y') }}</p>
+            <h2 class="text-center">{{ article.title|capitalize }}</h2>
+            <p>{{ article.content|capitalize|u.truncate(150, '...') }}</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary" href="{{ path('blog_show', {'slug': article.slug}) }}">Voir en détail</a>
+        </div>
+    </article>
     {% endfor %}
+</div>
 {% endblock %}

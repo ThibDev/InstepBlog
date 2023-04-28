@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Themes;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ThemesType extends AbstractType
 {
@@ -18,7 +20,7 @@ class ThemesType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Nom du thème',
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir le nom du thème',
+                    'placeholder' => 'Merci de saisir le nom du thème',
                     'class' => 'form-control my-2'
                 ],
                 'label_attr' => [
@@ -28,21 +30,30 @@ class ThemesType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description du thème',
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir la description du thème',
+                    'placeholder' => 'Merci de saisir la description du thème',
                     'class' => 'form-control my-2'
                 ],
                 'label_attr' => [
                     'class' => 'text-info'
                 ]
             ])
-            ->add('illustration', TextType::class, [
+            ->add('illustration', FileType::class, [
                 'label' => 'Image du thème',
+                'mapped'=>false,
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir l\'url de l\'image du thème',
+                    'placeholder' => 'Merci de saisir l\'url de l\'image du thème',
                     'class' => 'form-control my-2'
                 ],
                 'label_attr' => [
                     'class' => 'text-info'
+                ],
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => ["image/png", "image/jpeg", "image/pjpeg"],
+                        'mimeTypesMessage' => "Formats d'image supportées : .jpg, .png, .jpeg, .pjpeg",
+                        'maxSizeMessage' => "La taille autorisée est de 2048k"
+                    ])
                 ]
             ])
             ->add('submit', SubmitType::class, [
